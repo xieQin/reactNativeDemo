@@ -20,6 +20,14 @@ class Post extends Component {
   onRefresh (page = 1, callback, options) {
     this.props.onRefresh(page, callback)
   }
+
+  renderRow (row) {
+    return this.state.renderRow(row)
+  }
+
+  render() {
+    
+  }
 }
 
 export default Post
