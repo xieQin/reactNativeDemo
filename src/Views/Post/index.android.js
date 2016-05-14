@@ -26,8 +26,32 @@ class Post extends Component {
   }
 
   render() {
-    
+
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  navbarSpace: {
+    height: (Platform.OS !== 'android') ? 64 : 0,
+  }
+  rowContainer: {
+    paddingRight: 15,
+    paddingLeft: 10,
+    flexDirection: 'row'
+  },
+  paginationView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 20,
+    paddingBottom: 20
+  },
+  loadMoreText: {
+    fontSize: 15,
+    color: 'gray'
+  }
+})
 
 export default Post
