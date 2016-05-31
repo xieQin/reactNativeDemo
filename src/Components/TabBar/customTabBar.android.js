@@ -33,6 +33,30 @@ class CustomTabBar extends Component {
       </TouchableOpacity>
     )
   }
+
+  componentDidMount() {
+    this.setAnimationValue({value: this.props.activeTab})
+    this._listener = this.props.scrollValue.addListener(this.setAnimationValue)
+  }
+
+  setAnimationValue({value}) {
+    let currentPage = this.props.activeTab
+
+    this.unselectedTabIcons.forEach((icon, i) => {
+      var iconRef = icon
+
+      if (!icon.setNativeProps && icon !== null) {
+        iconRef = icon.refs.icon_image
+      }
+
+      if (value - i >= 0 && value - i <= 1) {
+        iconRef.setNativeProps({opacity: value - i})
+      }
+      if (i - value >= 0 &&  i - value <= 1) {
+        iconRef.setNativeProps({opacity: i - value})
+      }
+    })
+  }
 }
 
 const styles = StyleSheet.create({
