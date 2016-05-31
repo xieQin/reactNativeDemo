@@ -26,7 +26,35 @@ class Post extends Component {
   }
 
   render() {
+    return (
+      <View style={[styles.container, {backgroundColor: this.state.backgroundColor}, this.props.style]}>
+        <View style={styles.navBarSpace} />
+        <GiftedListView rowView={this.renderRow}
+                        onFetch={this.onRefresh}
+                        paginationAllLoadedView={this.renderPaginationAllLoadedView}
+                        paginationWaitingView={this.renderPaginationWaitingView}
+                        headerView={this.renderHeaderView}
+                        PullToRefreshViewAndroidProps={{
+                          colors: ['#F6F6EF'],
+                          progressBackgroundColor: '#FF6600',
+                        }}
+                        customStyles={{
+                          refreshableView: {
+                            backgroundColor: this.state.backgroundColor,
+                            justifyContent: 'flex-end',
+                            paddingBottom: 12,
+                          },
+                          paginationView: {
+                            backgroundColor: this.state.backgroundColor,
+                            height: 60
+                          }
+                        }}/>
+      </View>
+    )
+  }
 
+  renderPaginationAllLoadedView () {
+    
   }
 }
 
