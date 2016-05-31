@@ -54,7 +54,27 @@ class Post extends Component {
   }
 
   renderPaginationAllLoadedView () {
-    
+    return(
+      <View />
+    )
+  }
+
+  renderPaginationWaitingView (paginateCallback) {
+    return (
+      <TouchableOpacity style={styles.paginationView}
+                        onPress={paginateCallback}>
+        <Text style={styles.loadMoreText}>
+          {this.state.loadMoreText}
+        </Text>
+      </TouchableOpacity>
+    )
+  }
+
+  renderHeaderView () {
+    if(this.state.renderHeader) {
+      return this.props.renderHeader()
+    }
+    return (null)
   }
 }
 
