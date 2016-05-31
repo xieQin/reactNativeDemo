@@ -57,6 +57,32 @@ class CustomTabBar extends Component {
       }
     })
   }
+
+  render() {
+    var containerWidth = this.props.containerWidth
+    var numberOfTabs = this.props.tabs.length
+    var tabUnderlineStyle = {
+      position: 'absolute',
+      width: containerWidth / numberOfTabs,
+      height: 3,
+      backgroundColor: '#FF6600',
+      bottom: 0,
+    }
+
+    var left = this.props.scrollValue.interpolate({
+      inputRange: [0, 1], outputRange: [0, containerWidth / numberOfTabs]
+    })
+
+    return (
+      <View>
+        <View style={styles.separator}/>
+        <View style={styles.tabs}>
+          {this.props.tabs.map((tab, i) => this.renderTabOption(tab, i))}
+        </View>
+        <Animated.View style={[tabUnderlineStyle, {left}]} />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
