@@ -19,7 +19,7 @@ class CustomTabBar extends Component {
     tabs: React.PropTypes.array
   }
 
-  renderTabOption (valsString, page) {
+  renderTabOption = (valsString, page) => {
     let vals = valsString.split('!$#')
     let isTabActive = this.props.activeTab === page
     return (
@@ -34,12 +34,12 @@ class CustomTabBar extends Component {
     )
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.setAnimationValue({value: this.props.activeTab})
     this._listener = this.props.scrollValue.addListener(this.setAnimationValue)
   }
 
-  setAnimationValue({value}) {
+  setAnimationValue = ({value}) => {
     let currentPage = this.props.activeTab
 
     this.unselectedTabIcons.forEach((icon, i) => {

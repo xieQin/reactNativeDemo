@@ -10,8 +10,9 @@ import CustomTabBar from './customTabBar.android.js'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 class TabBar extends Component {
-  getInitialState () {
-    return {
+  constructor (props) {
+    super(props)
+    this.state = {
       structure: this.props.structure,
       selectedTab: this.props.selectedTab,
       iconSize: this.props.iconSize ? this.props.iconSize : 30,

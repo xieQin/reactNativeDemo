@@ -7,12 +7,13 @@ import React, {
 } from 'react-native'
 import ToolbarAndroid from 'ToolbarAndroid'
 import TabBar from '../../Components/TabBar/'
-import api from '../../NetWork/api'
+import * as api from '../../NetWork/api'
 import RefreshableListView from '../../Components/RefreshableListView/'
 
 class DashBoard extends Component {
-  getInitialState () {
-    return {
+  constructor (props) {
+    super(props)
+    this.state = {
       topStroyIDs: null,
       lastIndex: 0
     }
@@ -40,7 +41,8 @@ class DashBoard extends Component {
         {
           title: 'Show HN',
           iconName: 'eye',
-          renderContent: () => {return(
+          renderContent: () => {
+            return(
               <View style={{flex:1}}>
                 <ToolbarAndroid style={styles.toolbar}
                                 title={'Show HN'}
@@ -49,12 +51,14 @@ class DashBoard extends Component {
                                      onRefresh={(page, callback)=>this.listViewOnRefresh(page, callback, api.HN_SHOW_STORIES_ENDPOINT)}
                                      backgroundColor={'#F6F6EF'}/>
               </View>
-            );}
+            )
+          }
         },
         {
           title: 'Front Page',
           iconName: 'star',
-          renderContent: () => {return(
+          renderContent: () => {
+            return(
               <View style={{flex:1}}>
                 <ToolbarAndroid style={styles.toolbar}
                                 title={'Top Stories'}
@@ -63,12 +67,14 @@ class DashBoard extends Component {
                                      onRefresh={(page, callback)=>this.listViewOnRefresh(page, callback, api.HN_TOP_STORIES_ENDPOINT)}
                                      backgroundColor={'#F6F6EF'}/>
               </View>
-            );}
+            )
+          }
         },
         {
           title: 'New',
           iconName: 'level-up',
-          renderContent: () => {return(
+          renderContent: () => {
+            return(
               <View style={{flex:1}}>
                 <ToolbarAndroid style={styles.toolbar}
                                 title={'New Stories'}
@@ -77,12 +83,14 @@ class DashBoard extends Component {
                                      onRefresh={(page, callback)=>this.listViewOnRefresh(page, callback, api.HN_NEW_STORIES_ENDPOINT)}
                                      backgroundColor={'#F6F6EF'}/>
               </View>
-            );}
+            )
+          }
         },
         {
           title: 'Jobs',
           iconName: 'suitcase',
-          renderContent: () => {return(
+          renderContent: () => {
+            return(
               <View style={{flex:1}}>
                 <ToolbarAndroid style={styles.toolbar}
                                 title={'Jobs'}
@@ -91,8 +99,9 @@ class DashBoard extends Component {
                                      onRefresh={(page, callback)=>this.listViewOnRefresh(page, callback, api.HN_JOB_STORIES_ENDPOINT)}
                                      backgroundColor={'#F6F6EF'}/>
               </View>
-            );}
-        }
+            )
+          }
+        },
       ]}
       selectedTab={2}
       activeTintColor={'#ff8533'}
@@ -100,7 +109,7 @@ class DashBoard extends Component {
     )
   }
 
-  renderListViewRow (row, pushNavBarTitle) {
+  renderListViewRow = (row, pushNavBarTitle) => {
       return(
           <TouchableHighlight underlayColor={'#f3f3f2'}
                               onPress={()=>this.selectRow(row, pushNavBarTitle)}>
@@ -122,7 +131,7 @@ class DashBoard extends Component {
       )
   }
 
-  listViewOnRefresh (page, callback, api_endpoint) {
+  listViewOnRefresh = (page, callback, api_endpoint) => {
       if (page != 1 && this.state.topStoryIDs){
           this.fetchStoriesUsingTopStoryIDs(this.state.topStoryIDs, this.state.lastIndex, 5, callback);
       }
@@ -137,7 +146,7 @@ class DashBoard extends Component {
       }
   }
 
-  fetchStoriesUsingTopStoryIDs (topStoryIDs, startIndex, amountToAdd, callback) {
+  fetchStoriesUsingTopStoryIDs = (topStoryIDs, startIndex, amountToAdd, callback) => {
       var rowsData = [];
       var endIndex = (startIndex + amountToAdd) < topStoryIDs.length ? (startIndex + amountToAdd) : topStoryIDs.length
       function iterateAndFetch(){
@@ -161,7 +170,7 @@ class DashBoard extends Component {
       this.setState({lastIndex: endIndex});
   }
 
-  selectRow (row, pushNavBarTitle) {
+  selectRow = (row, pushNavBarTitle) => {
     this.props.navigator.push({
       id: 'Post',
       title: pushNavBarTitle+' #'+row.count,

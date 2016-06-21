@@ -5,13 +5,14 @@ import React, {
   TouchableHighlight,
   Component
 } from 'react-native'
-import api from '../../../../NetWork/api'
+import * as api from '../../../../NetWork/api'
 
 class Comment extends Component {
   displayName = 'Comment'
 
-  getInitialState () {
-    return {
+ constructor (props) {
+    super(props)
+    this.state = {
       subCommentsLoading: false,
       subCommentsHidden: true,
       subCommentsData: null,
@@ -36,7 +37,7 @@ class Comment extends Component {
     )
   }
 
-  getRepliesControlButtonText () {
+  getRepliesControlButtonText = () => {
     if(!this.state.subCommentsHidden){
         return(
           <Text style={styles.showRepliesButtonText}>
@@ -53,7 +54,7 @@ class Comment extends Component {
       }
     }
 
-  renderRepliesControlButton () {
+  renderRepliesControlButton = () => {
     if(this.state.subCommentsLoading){
       return(
         <Text style={styles.showRepliesButtonText}>
@@ -75,7 +76,7 @@ class Comment extends Component {
     }
   }
 
-  renderSubComments () {
+  renderSubComments = () => {
     if(!this.state.subCommentsData || this.state.subCommentsHidden){
       return(<View/>)
     }
@@ -86,7 +87,7 @@ class Comment extends Component {
     );
   }
 
-  onShowReplies () {
+  onShowReplies = () => {
     if(this.state.subCommentsData && this.state.subCommentsHidden){
       this.setState({
         subCommentsHidden: false
@@ -131,7 +132,7 @@ class Comment extends Component {
       iterateAndFetch()
     }
   }
-  fixCommentText (str) {
+  fixCommentText = (str) => {
     return String(str).replace(/<p>/g, '\n\n')
                 .replace(/&#x2F;/g, '/')
                 .replace('<i>', '')

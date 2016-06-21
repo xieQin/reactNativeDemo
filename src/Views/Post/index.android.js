@@ -7,7 +7,7 @@ import React, {
   Component
 } from 'react-native'
 import ToolbarAndroid from 'ToolbarAndroid'
-import api from '../../NetWork/api'
+import * as api from '../../NetWork/api'
 import RefreshableListView from '../../Components/RefreshableListView'
 import Comment from './Elements/Comment'
 
@@ -29,7 +29,7 @@ class Post extends Component {
     )
   }
 
-  renderListViewRow (row) {
+  renderListViewRow = (row) => {
     if(row.count==this.props.post.kids.length){
       return(
         <View style={{paddingBottom: 20}}>
@@ -42,7 +42,7 @@ class Post extends Component {
     )
   }
 
-  renderListViewHeader () {
+  renderListViewHeader = () => {
     return(
       <View style={styles.headerContainer}>
         <Text style={styles.headerTitle}>
@@ -61,7 +61,7 @@ class Post extends Component {
     )
   }
 
-  renderPostText () {
+  renderPostText = () => {
     if(!this.props.post.text){
       return null;
     }
@@ -72,7 +72,7 @@ class Post extends Component {
     )
   }
 
-  renderSourceButton () {
+  renderSourceButton = () => {
     if(!this.props.post.url){
       return null;
     }
@@ -86,7 +86,7 @@ class Post extends Component {
     )
   }
 
-  listViewOnRefresh (page, callback) {
+  listViewOnRefresh = (page, callback) => {
     if(!this.props.post.kids){
       callback([], {allLoaded: true})
     }
@@ -98,7 +98,7 @@ class Post extends Component {
     }
   }
 
-  fetchCommentsUsingKids (kids, startIndex, amountToAdd, callback) {
+  fetchCommentsUsingKids = (kids, startIndex, amountToAdd, callback) => {
     var rowsData = [];
     var endIndex = (startIndex + amountToAdd) < kids.length ? (startIndex + amountToAdd) : kids.length;
     function iterateAndFetch(){
@@ -124,7 +124,7 @@ class Post extends Component {
     this.setState({lastIndex: endIndex})
   }
 
-  pushSourceWebpage () {
+  pushSourceWebpage = () => {
     this.props.navigator.push({
       id: 'Web',
       title: this.props.post.title,
@@ -132,7 +132,7 @@ class Post extends Component {
     })
   }
 
-  fixPostText (str) {
+  fixPostText = (str) => {
     return String(str).replace(/<p>/g, '\n\n')
                   .replace(/&#x2F;/g, '/')
                   .replace('<i>', '')
