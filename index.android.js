@@ -27,13 +27,13 @@ BackAndroid.addEventListener('hardwareBackPress', () => {
   return true
 })
 
-class reactNativeDemo extends Component {
+class ReactNativeDemo extends Component {
   render() {
     return (
       <Navigator
         style={styles.container}
         tintColor='#FF6600'
-        initialRoute={{id: 'Web'}}
+        initialRoute={{id: 'Dashboard'}}
         renderScene={this.navigatorRenderScene}
       />
     )
@@ -74,4 +74,6 @@ const styles = StyleSheet.create({
   }
 })
 
-AppRegistry.registerComponent('reactNativeDemo', () => reactNativeDemo)
+AppRegistry.registerComponent('reactNativeDemo', () => ReactNativeDemo)
+
+export default ReactNativeDemo
