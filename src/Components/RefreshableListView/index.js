@@ -3,11 +3,12 @@ import React, {
   Text,
   View,
   TouchableOpacity,
-  Platform
+  Platform,
+  Component
 } from 'react-native'
 import GiftedListView from 'react-native-gifted-listview'
 
-class Post extends Component {
+class RefreshableListView extends Component {
   getInitialState () {
     return {
       renderRow: this.props.renderRow,
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
   },
   navbarSpace: {
     height: (Platform.OS !== 'android') ? 64 : 0,
-  }
+  },
   rowContainer: {
     paddingRight: 15,
     paddingLeft: 10,

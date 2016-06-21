@@ -3,7 +3,8 @@ import React, {
   Text,
   View,
   TouchableOpacity,
-  Platform
+  Platform,
+  Component
 } from 'react-native'
 import GiftedListView from 'react-native-gifted-listview'
 
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
   },
   navbarSpace: {
     height: (Platform.OS !== 'android') ? 64 : 0,
-  }
+  },
   rowContainer: {
     paddingRight: 15,
     paddingLeft: 10,

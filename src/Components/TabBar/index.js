@@ -59,4 +59,4 @@ class TabBar extends Component {
 const styles = StyleSheet.create({
 })
 
-export default = TabBar
+export default TabBar
